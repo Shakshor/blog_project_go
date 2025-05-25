@@ -6,6 +6,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"time"
 
 	"github.com/Shakshor/blog_project_go/internal/database"
 	"github.com/go-chi/chi"
@@ -20,8 +21,6 @@ type apiConfig struct {
 }
 
 func main() {
-	fmt.Println("Hello go server")
-
 	godotenv.Load() // load env
 
 	portString := os.Getenv("PORT")
@@ -46,10 +45,14 @@ func main() {
 	// 	log.Fatal("Can't create db connection:", err)
 	// }
 
+	db := database.New(conn)
 	apiCfg := apiConfig{
 		// DB: queries,
-		DB: database.New(conn),
+		DB: db,
 	}
+
+	// aggregate
+	go startScraping(db, 10, time.Minute)
 
 	router := chi.NewRouter()
 
