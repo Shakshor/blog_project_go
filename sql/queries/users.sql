@@ -7,3 +7,6 @@ RETURNING *;
 
 -- name: GetUserByAPIKey :one
 SELECT * FROM users WHERE api_key = $1;
+
+-- name: GetUserByName :one
+SELECT * FROM users WHERE LOWER(name) = LOWER($1);
