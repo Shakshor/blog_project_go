@@ -72,7 +72,9 @@ func main() {
 	v1Router.Post("/users", apiCfg.handlerCreateUser)
 	v1Router.Get("/users", apiCfg.middlewareAuth(apiCfg.handlerGetUser))
 
+	// using_jwt_auth
 	v1Router.Post("/login", apiCfg.handleLoginUser)
+	v1Router.Get("/home", apiCfg.handleHome)
 
 	v1Router.Post("/feeds", apiCfg.middlewareAuth(apiCfg.handlerCreateFeed))
 	v1Router.Get("/feeds", apiCfg.handlerGetFeeds)
