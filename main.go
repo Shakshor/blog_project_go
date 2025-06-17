@@ -6,7 +6,6 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"time"
 
 	"github.com/Shakshor/blog_project_go/internal/database"
 	"github.com/go-chi/chi"
@@ -52,7 +51,7 @@ func main() {
 	}
 
 	// aggregate
-	go startScraping(db, 10, time.Minute)
+	// go startScraping(db, 10, time.Minute)
 
 	router := chi.NewRouter()
 
