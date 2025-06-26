@@ -13,7 +13,7 @@ import (
 func GetAPIKey(headers http.Header) (string, error) {
 	val := headers.Get("Authorization")
 	if val == "" {
-		return "", errors.New("no authentication info found")
+		return "", errors.New("no authentication information found")
 	}
 
 	vals := strings.Split(val, " ")
